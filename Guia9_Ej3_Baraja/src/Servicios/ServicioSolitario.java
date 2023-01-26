@@ -3,6 +3,7 @@ package Servicios;
 import Entidades.Carta;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -144,7 +145,7 @@ public class ServicioSolitario {
     public void jugar(ArrayList<Carta> baraja) {
         int cont = 0;
         String carta = "";
-        int pos;
+        int pos = 0;
         int reyes = 0;
         // veo si hay cartas colocadas donde deben ir
         int correctas = Sjuego.cartasCorrectas(barajaIdeal, barajaSolitario);
@@ -162,7 +163,21 @@ public class ServicioSolitario {
                 boolean bien = false;
                 do {
                     System.out.print("   Elija posición para cambiar (fila+columna):");
-                    pos = leer.nextInt();
+                   
+            // Si no entra un numero entero, captura el error y lo pide nuevo
+                    boolean deNuevo;
+                    do {
+                        deNuevo = true;
+                        try {
+                            System.out.print("Ingrese un número entero: ");
+                            pos = leer.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Ingreso inválido, por favor ingrese un número entero.");
+                            deNuevo = false;
+                            leer.next();
+                        }
+                    } while (deNuevo == false);
+
                     if ((pos < 11 || pos > 49) || (pos == 20 || pos == 30 || pos == 40)) {
                         System.out.println("Esa posición no existe.");
                     } else {

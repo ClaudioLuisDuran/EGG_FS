@@ -14,6 +14,7 @@ public class ServicioJuego {
         ServiciosCartas Sc = new ServiciosCartas();
         Servicio7yMedio S7 = new Servicio7yMedio();
         ServicioSolitario Ss = new ServicioSolitario();
+        ServicioMayorMenor SMm = new ServicioMayorMenor();
         ArrayList<Carta> baraja = new ArrayList();
         ArrayList<Carta> monton = new ArrayList();
         Scanner leer;
@@ -37,8 +38,9 @@ public class ServicioJuego {
                     + "       Juegos\n"
                     + "10. Jugar al 7 y medio.\n"
                     + "11. Jugar Solitario.\n"
+                    + "12. Mayor o menor.\n"
                     + "----------------------------------------------\n"
-                    + "12. Terminar.\n"
+                    + "13. Terminar.\n"
                     + "Su opción:");
             opc = leer.nextInt();
             Carta cartaDada;
@@ -109,12 +111,16 @@ public class ServicioJuego {
                     break;
                 case 12:
                     this.clearScreen();
+                    SMm.Mm();
+                    break;
+                case 13:
+                    this.clearScreen();
                     System.out.println("Sesión terminada.");
                     break;
                 default:
                     System.out.println("La opción introducida no existe.");
             }
-        } while (opc != 12);
+        } while (opc != 13);
     }
 
     // Metodo para "borrar" pantalla
